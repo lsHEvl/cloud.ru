@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-listen-app-deployment
+  namespace: your-namespace
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-listen-app
+  template:
+    metadata:
+      labels:
+        app: my-listen-app
+    spec:
+      containers:
+      - name: my-listen-app
+        image: your-docker-image:tag
+        ports:
+        - containerPort: 8000
+        env:
+        - name: AUTHOR
+          value: "YourName"
+        - name: UUID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+        readinessProbe:
+          httpGet:
+            path: /author
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /id
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20

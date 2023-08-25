@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "image": {
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "replicaCount": {
+      "type": "integer"
+    },
+    "author": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

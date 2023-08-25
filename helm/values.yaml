@@ -1,0 +1,7 @@
+image:
+  repository: your-docker-image
+  tag: latest
+
+replicaCount: 3
+
+author: "YourName"
